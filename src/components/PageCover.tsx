@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/all";
 type Props = {};
 
 function PageCover({}: Props) {
+  // useGsap是useEffect gsap.context()的替代品 会自动处理 动画 清理
   useEffect(() => {
     //   拿到所有的元素
     let panels = gsap.utils.toArray(".panel");
@@ -12,10 +13,10 @@ function PageCover({}: Props) {
     // 为每个面板创建一个 ScrollTrigger，以跟踪每个面板的顶部何时到达视口的顶部（用于捕捉）
     //   返回ScrollTrigger对象
     let tops = panels.map((panel) =>
-      ScrollTrigger.create({ trigger: panel, start: "top top" })
+      ScrollTrigger.create({ trigger: panel as any, start: "top top" })
     );
     //    循环创建动画
-    panels.forEach((panel, i) => {
+    panels.forEach((panel: any, i) => {
       ScrollTrigger.create({
         // 创建trigger 触发者就是自己
         trigger: panel,
